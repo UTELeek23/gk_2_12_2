@@ -16,13 +16,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
-                )
-                .httpBasic(httpBasic -> httpBasic.realmName("My App Realm")); // Thay thế httpBasic()
-        return http.build();
+                ).build();
     }
 }
